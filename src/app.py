@@ -5,7 +5,10 @@ from datetime import datetime, timezone
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from utils.extensions import postgres_instance, logger
-from prompts.crypto_prompt import translate_chain, summarize_chain, insight_chain
+from prompts.crypto_prompt import (
+    translate_chain, summarize_chain, 
+    bullet_to_text_chain, insight_chain
+)
 
 
 executor = ThreadPoolExecutor()
@@ -42,11 +45,14 @@ async def crypto_analizys_chain(transcript):
     # Run them in parallel (order preserved)
     summaries = await asyncio.gather(*tasks)
 
-    for summary in summaries:
-        logger.info(summary)
+    # for summary in summaries:
+    #     logger.info(summary)
 
     merged_summary = "\n".join(summaries)
-    insights = insight_chain.invoke({"transcript": merged_summary})
+    paragraph_summary = bullet_to_text_chain.invoke(
+        {"bullets": merged_summary})
+    insights = insight_chain.invoke(
+        {"transcript": paragraph_summary})
 
     return insights
 
@@ -55,8 +61,7 @@ query = (
     """
     SELECT yv.body
     FROM youtube_videos as yv
-    WHERE yv.topic = 'crypto_international'
-    AND yv.channel_title = 'Altcoin Daily'
+    WHERE yv.channel_title = 'Douglas Tadeu'
     ORDER BY yv.created_utc DESC
     LIMIT 1
     """
@@ -66,10 +71,10 @@ for transcript in data:
     loop_start_time = datetime.now(timezone.utc)
 
     result = asyncio.run(crypto_analizys_chain(transcript[0]))
-    print(result)
+    logger.info(result)
 
     loop_finished_time = datetime.now(timezone.utc)
     time_difference = (
         (loop_finished_time - loop_start_time)
         .total_seconds())
-    print(f"Loop took {round(time_difference, 2)} seconds")
+    logger.info(f"Loop took {round(time_difference, 2)} seconds")

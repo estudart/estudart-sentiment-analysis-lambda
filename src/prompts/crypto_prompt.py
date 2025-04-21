@@ -23,6 +23,18 @@ summarize_prompt = ChatPromptTemplate.from_template(
     """
 )
 
+bullet_to_text_prompt = ChatPromptTemplate.from_template(
+    """
+    You are a skilled technical writer.
+
+    Turn the following bullet points into a well-written, coherent paragraph that flows naturally. 
+    Preserve all key ideas and keep it concise.
+
+    Bullet points:
+    {bullets}
+    """
+)
+
 insight_prompt = ChatPromptTemplate.from_template(
     """
     You are a crypto analyst skilled at interpreting sentiment and spotting opportunities 
@@ -38,6 +50,7 @@ insight_prompt = ChatPromptTemplate.from_template(
     """
 )
 
-summarize_chain = summarize_prompt | model | StrOutputParser()
-insight_chain = insight_prompt | model | StrOutputParser()
 translate_chain = translate_prompt | model | StrOutputParser()
+summarize_chain = summarize_prompt | model | StrOutputParser()
+bullet_to_text_chain = bullet_to_text_prompt | model | StrOutputParser()
+insight_chain = insight_prompt | model | StrOutputParser()
