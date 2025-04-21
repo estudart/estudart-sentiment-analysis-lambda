@@ -1,6 +1,6 @@
 import psycopg2
 
-from utils.config import secrets
+from src.utils.config import secrets
 
 
 class PostgreSQL:
