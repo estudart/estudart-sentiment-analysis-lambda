@@ -1,0 +1,18 @@
+ipykernel
+langchain-openai
+langchain-core
+langchain
+langchain-community
+huggingface_hub
+langchain-huggingface
+transformers
+jinja2
+pypdf
+yt_dlp
+pydub
+audioop-lts; python_version>='3.13'
+beautifulsoup4
+sentence-transformers
+langchain-chroma
+faiss-cpu
+lark

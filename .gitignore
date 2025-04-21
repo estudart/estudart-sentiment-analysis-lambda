@@ -1,0 +1,9 @@
+# Ignore config.py
+src/utils/config.py
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+venv/
+src/.env
