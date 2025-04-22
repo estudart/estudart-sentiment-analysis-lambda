@@ -12,12 +12,11 @@ from src.chains.crypto import insight_chain, summarize_chain
 
 
 class VideoAnalyzer:
-    def __init__(self, number_of_videos, channel_title):
+    def __init__(self, channel_title):
         self.executor = ThreadPoolExecutor()
         self.database_instance = postgres_instance
         self.logger = logger
 
-        self.number_of_videos = number_of_videos
         self.channel_title = channel_title
 
 
