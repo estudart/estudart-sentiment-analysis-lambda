@@ -14,23 +14,25 @@ insight_prompt = PromptTemplate.from_template(
     QUESTION:
     {question}
 
-    INSTRUCTIONS — Base your answer only on the transcript content above. Do not make assumptions or refer to 
-    video metrics (e.g., views, likes, comments). Your analysis should include:
-
-    1. **Sentiment Analysis**: Classify the overall tone as **Bullish**, **Bearish**, or **Neutral**. 
-    Justify your answer with evidence from the context.
+    INSTRUCTIONS — Base your answer only on the transcript content above. 
+    Do not make assumptions or refer to  video metrics (e.g., views, likes, comments). 
     
-    2. **Opportunities**: List any projects, sectors, or trends mentioned that could represent investment 
-    or research opportunities. If none are mentioned, state that clearly.
+    Your analysis should include:
 
-    3. **Rationale**: For each point, provide brief but clear reasoning backed by statements or ideas found 
-    in the transcript.
-
-    4. **Source Identification**: Identify the individual or entity in the context who is expressing or 
-    supporting the vision stated.
+    1. **Sentiment Analysis**: Classify the overall tone as **Bullish**, 
+    **Bearish**, or **Neutral**. Justify your answer with evidence from the context.
     
-    Be concise, analytical, and grounded entirely in the transcript text. Do not speculate or generalize 
-    beyond what is written.
+    2. **Opportunities**: List any projects, sectors, or trends mentioned that could represent 
+    investment or research opportunities. If none are mentioned, state that clearly.
+
+    3. **Rationale**: For each point, provide brief but clear reasoning backed by 
+    statements or ideas found in the transcript.
+
+    4. **Source Identification**: Identify the individual or entity in the context 
+    who is expressing or supporting the vision stated.
+    
+    Be concise, analytical, and grounded entirely in the transcript text. Do not 
+    speculate or generalize beyond what is written.
     """
 )
 
